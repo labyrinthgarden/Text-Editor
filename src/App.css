@@ -1,161 +1,164 @@
 @font-face {
-  font-family: 'iosevka';
-  src: url('./assets/fonts/Iosevka-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: "iosevka";
+    src: url("./assets/fonts/Iosevka-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 :root {
-  font-family: 'iosevka', monospace;
-  --font-color: #FFFFFF;
-  --editor-font-color: #FFFFFF;
-  --bg-color: rgba(0,0,0,0.2);
-  --editor-background-color: rgba(0,0,0,0.5);
-  --titlebar-height: 30px;
-  --titlebar-bg: rgba(0,0,0,0.6);
-  --titlebar-button-hover: rgba(255, 255, 255, 0.1);
+    font-family: "iosevka", monospace;
+    --font-color: #ffffff;
+    --editor-font-color: #ffffff;
+    --bg-color: rgba(0, 0, 0, 0.2);
+    --editor-background-color: rgba(0, 0, 0, 0.5);
+    --titlebar-height: 30px;
+    --titlebar-bg: rgba(0, 0, 0, 0.6);
+    --titlebar-button-hover: rgba(255, 255, 255, 0.1);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html, body, #root {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+html,
+body,
+#root {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .app-container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-color);
-  min-width: 25%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color);
+    min-width: 25%;
 }
 
 .titlebar {
-  height: var(--titlebar-height);
-  background-color: var(--titlebar-bg);
-  color: var(--font-color);
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  z-index: 1000;
+    height: var(--titlebar-height);
+    background-color: var(--titlebar-bg);
+    color: var(--font-color);
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1000;
 }
 .titlebar[data-tauri-drag-region] {
-  -webkit-app-region: drag;
+    -webkit-app-region: drag;
 }
 .titlebar-left {
-  display: flex;
-  align-items: center;
-  height: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 .titlebar-right {
-  display: flex;
-  padding: 0 15px;
-  height: 100%;
-  align-items: center;
+    display: flex;
+    padding: 0 15px;
+    height: 100%;
+    align-items: center;
 }
 .titlebar-button {
-  width: 30px;
-  height: var(--titlebar-height);
-  border: none;
-  background: transparent;
-  color: var(--font-color);
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-  -webkit-app-region: no-drag;
+    width: 30px;
+    height: var(--titlebar-height);
+    border: none;
+    background: transparent;
+    color: var(--font-color);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    -webkit-app-region: no-drag;
 }
 .titlebar-button:hover {
-  background-color: var(--titlebar-button-hover);
+    background-color: var(--titlebar-button-hover);
 }
 .close-btn:hover {
-  background-color: #e74c3c !important;
+    background-color: #e74c3c !important;
 }
 
 .main-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - var(--titlebar-height));
-  padding: 2px 20px 20px;
-  overflow: hidden;
-  border: 1px solid #FFFFFF;
-  box-sizing: border-box;
-  background-color: rgba(0,0,0,0.3);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--titlebar-height));
+    padding: 2px 20px 20px;
+    overflow: hidden;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.navbar-container{
-    display:flex;
-    justify-content:space-between;
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
 }
 
-.navbar-button{
+.navbar-button {
     margin-top: 5px;
     margin-right: 5px;
     padding: 3px 7px;
-    border:none;
+    border: none;
     color: var(--font-color);
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.dropdown-menu{
+.dropdown-menu {
     position: absolute;
     top: 100%;
     right: 0;
-    color:white;
+    color: white;
     z-index: 1000;
     background-color: black;
     min-width: 195px;
 }
 
-.dropdown-button{
-    display:flex;
+.dropdown-button {
+    display: flex;
     justify-content: space-between;
     outline: 1px solid white;
     padding: 10px;
 }
 
 .filename {
-  flex-shrink: 0;
-  font-size: 8px;
-  color: var(--font-color);
-  padding: 10px 2px;
+    flex-shrink: 0;
+    font-size: 8px;
+    color: var(--font-color);
+    padding: 10px 2px;
 }
 
 .editor-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .typingarea {
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
-  border-radius: 0;
-  font-family: 'iosevka', monospace;
-  font-size: 20px;
-  box-sizing: border-box;
-  border: 1px solid #FFFFFF;
-  color: var(--editor-font-color);
-  background-color: var(--editor-background-color);
-  padding: 5px;
-  width: 100%;
-  resize: none;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    border-radius: 0;
+    font-family: "iosevka", monospace;
+    font-size: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    outline: 1px solid #ffffff;
+    color: var(--editor-font-color);
+    background-color: var(--editor-background-color);
+    padding: 5px;
+    width: 100%;
+    resize: none;
 }

@@ -30,6 +30,14 @@
   "plugins": {
     "window": {
       "defaultWindowIcon": null
+    },
+    "fs": {
+      "allowedPaths": [
+        {
+          "path": "*",
+          "access": "readwrite"
+        }
+      ]
     }
   },
   "bundle": {

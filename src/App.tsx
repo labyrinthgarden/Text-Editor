@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { open,BaseDirectory,writeTextFile } from "@tauri-apps/plugin-fs";
 import Titlebar from "./components/Titlebar";
 import Navbar from "./components/Navbar";
 import "./App.css";
@@ -10,13 +11,25 @@ function App() {
   const [bgColor, setBgColor] = useState("rgba(0,0,0,0.1)");
   const [editorBgColor, setEditorBgColor] = useState("rgba(0,0,0,0.5)");
 
+  const filePath = "main.c";
+
+  const handleSave = async () => {
+    try {
+      await writeTextFile(filePath, text );
+    } catch (error) {
+      alert(`Failed to save file:${error}`);
+    }
+  };
+
   const updateCSSVariable = (variable: string, value: string) => {
     document.documentElement.style.setProperty(variable, value);
   };
 
   function hexToRgba(hex: string, alpha: number): string {
-    hex = hex.replace(/^#/, '');
-    let r = 0, g = 0, b = 0;
+    hex = hex.replace(/^#/, "");
+    let r = 0,
+      g = 0,
+      b = 0;
     if (hex.length === 3) {
       r = parseInt(hex[0] + hex[0], 16);
       g = parseInt(hex[1] + hex[1], 16);
@@ -59,24 +72,31 @@ function App() {
           onEditorBgColorChange={handleEditorBgColorChange}
         />
         <div className="filename">
-          <h1>main.c</h1>
+          <h1>{filePath}</h1>
         </div>
         <div className="editor-wrapper">
           <textarea
             className="typingarea"
+            spellCheck="false"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            onKeyDown={(e) => {
+            onKeyDown={async (e) => {
               if (e.key === "Tab") {
                 e.preventDefault();
                 const textarea = e.target as HTMLTextAreaElement;
                 const start = textarea.selectionStart;
                 const end = textarea.selectionEnd;
-                const newValue = text.substring(0, start) + "  " + text.substring(end);
+                const newValue =
+                  text.substring(0, start) + "  " + text.substring(end);
                 setText(newValue);
                 setTimeout(() => {
                   textarea.selectionStart = textarea.selectionEnd = start + 2;
                 }, 0);
+              }
+              // Ctrl+S or Cmd+S
+              if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+                e.preventDefault();
+                await handleSave();
               }
             }}
           />
