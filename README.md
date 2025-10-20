@@ -6,6 +6,6 @@ Basic text editor developed with Tauri 2, Rust, React, and TypeScript.
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 # Preview Screenshots
-![Vista 1](assets/1.png)
-![Vista 2](assets/2.png)
-![Vista 3](assets/3.png)
+![Vista 1](previews/1.png)
+![Vista 2](previews/2.png)
+![Vista 3](previews/3.png)
